@@ -45,10 +45,13 @@ async def translate_text(text):
 
 goto = False
 for rss_url in RSS_UK.split(', '):
-    if result.count('\n') >= 9:
+    if result.count('http') >= 5 or goto == True:
         break
     parsed = feedparser.parse(rss_url)
     for entry in parsed.entries:
+        if result.count('http') >= 5:
+            goto = True
+            break
         name = asyncio.run(translate_text(entry.title))
         desc = asyncio.run(translate_text(entry.description))
         url = entry.link
