@@ -26,7 +26,7 @@ def send_message(message):
     set_key(dotenv_file, 'ID_MESSAGE', str(new_id_message.id))
 
 def verify(array):
-    for k in KEYWORDS.split():  # нужные слова
+    for k in KEYWORDS.replace(" ", "").split(","):  # нужные слова
         for i in array:
             if k.lower() in i.lower():
                 return array[0] + '\n' + array[2] + '\n'
