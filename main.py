@@ -44,7 +44,7 @@ async def translate_text(text):
         return result.text
 
 goto = False
-for rss_url in RSS_UK.split(', '):
+for rss_url in RSS_UK.replace(" ", "").split(","):
     if result.count('http') >= 5 or goto == True:
         break
     parsed = feedparser.parse(rss_url)
